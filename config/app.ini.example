@@ -1,0 +1,27 @@
+# 项目名称
+APP_NAME = go-chats
+
+# 监听端口
+HTTP_ADDR = 0.0.0.0
+HTTP_PORT = 8080
+
+# 应用的模式，默认是 debug 开发模式，release 为生产模式, test 为测试模式
+RUN_MODE = debug
+
+# 静态文件路径
+STATIC_DIR = ./static
+STORAGE_DIR = ./storage/app/public
+
+# 数据库配置
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=go-chats
+DB_USERNAME=root
+DB_PASSWORD=123456
+DB_PREFIX=gc_
+
+BROADCAST_DRIVER=redis
+REDIS_HOST=redis
+REDIS_PASSWORD=123456
+REDIS_PORT=6379
