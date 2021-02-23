@@ -1,4 +1,4 @@
-# qq-zone
+# go-chats
 基于GO语言的Gin框架 + WebSocket实现聊天室
 
 #### 介绍
