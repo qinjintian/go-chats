@@ -72,20 +72,20 @@ func LoggerWithFormatter(engine *gin.Engine) {
 
 	// LoggerWithFormatter 中间件会将日志写入 gin.DefaultWriter
 	// 默认情况下 gin.DefaultWriter 是 os.Stdout
-	//engine.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
+	// engine.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 	// 自定义日志输出格式
 	// return fmt.Sprintf("%s - [%s] \"%s %s %s %d %s \"%s\" %s\"\n",
-	//	param.ClientIP,
-	//	param.TimeStamp.Format("2006-01-02 15:04:05"),
-	//	param.Method,
-	//	param.Path,
-	//	param.Request.Proto,
-	//	param.StatusCode,
-	//	param.Latency,
-	//	param.Request.UserAgent(),
-	//	param.ErrorMessage,
-	//)
-	//}))
+	// 	param.ClientIP,
+	// 	param.TimeStamp.Format("2006-01-02 15:04:05"),
+	// 	param.Method,
+	// 	param.Path,
+	// 	param.Request.Proto,
+	// 	param.StatusCode,
+	// 	param.Latency,
+	// 	param.Request.UserAgent(),
+	// 	param.ErrorMessage,
+	// )
+	// }))
 }
 
 // 监听HTTP服务和信号
@@ -100,11 +100,13 @@ func ListenAndServe(r *gin.Engine, cfg *ini.File) {
 		MaxHeaderBytes: 1 << 20,          // 最大报头字节
 	}
 
+	b := new(Bootstrap)
+
 	// 监听HTTP服务
-	go (&Bootstrap{}).listenServe(srv)
+	go b.listenServe(srv)
 
 	// 监听信号平滑重启HTTP服务
-	(&Bootstrap{}).listenSignal(context.Background(), srv)
+	b.listenSignal(context.Background(), srv)
 }
 
 func (b *Bootstrap) listenServe(srv *http.Server) {
@@ -116,25 +118,24 @@ func (b *Bootstrap) listenServe(srv *http.Server) {
 
 // 监听信号
 func (b *Bootstrap) listenSignal(ctx context.Context, srv *http.Server) {
-	sig := make(chan os.Signal)
+	sig := make(chan os.Signal, 1)
 
 	// kill （无参数）默认发送 syscall.SIGTERM
 	// kill -2 指的是 syscall.SIGINT
 	// kill -9 指的是 syscall.SIGKILL 但是不能被捕获，所以不需要添加它
 
 	signal.Notify(sig, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
-	<-sig
-	log.Println("正在关闭服务器 ...")
 
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
-	defer cancel()
-	if err := srv.Shutdown(ctx); err != nil {
+	<-sig // 接收到信号量
+	log.Println("正在关闭服务器 ...")
+	timeoutCtx, _ := context.WithTimeout(ctx, 1 * time.Second) // 设置超过N秒所有程序未闲置也会硬终止服务
+	if err := srv.Shutdown(timeoutCtx); err != nil {
 		log.Fatal("服务器关闭:", err)
 	}
 
-	// 捕获ctx.Done()  5秒超时。
 	select {
-	case <-ctx.Done():
+	case <-timeoutCtx.Done():
+		// 捕获ctx.Done()  5秒超时。
 		log.Println("5秒超时。")
 	}
 	log.Println("服务器退出。")
@@ -146,7 +147,7 @@ func InitDB(cfg *ini.File) {
 }
 
 // 加载模板
-func LoadHTMLGlob(r *gin.Engine)  {
+func LoadHTMLGlob(r *gin.Engine) {
 	r.LoadHTMLGlob("templates/*.html")
 }
 
@@ -154,9 +155,9 @@ func LoadHTMLGlob(r *gin.Engine)  {
 func EnableSession(r *gin.Engine) {
 	gob.Register(variable.UserSessionData{}) // 跨路由存取复杂结构的session数据，需要注册数据类型
 	store := cookie.NewStore([]byte("secret"))
-	//store.Options(sessions.Options{
-	//	MaxAge: int(30 * time.Minute), // 30min
-	//	Path:   "/",
-	//})
+	// store.Options(sessions.Options{
+	// 	MaxAge: int(30 * time.Minute), // 30min
+	// 	Path:   "/",
+	// })
 	r.Use(sessions.Sessions("session", store))
 }

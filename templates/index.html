@@ -1,9 +1,8 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Slek - Chat and Discussion Platform</title>
@@ -14,7 +13,7 @@
     <link rel="stylesheet" href="../static/vendor/enjoyhint/enjoyhint.css">
     <!-- App styles -->
     <link rel="stylesheet" href="../static/css/app.min.css">
-     <!--the css for jquery.mCustomScrollbar-->
+    <!--the css for jquery.mCustomScrollbar-->
     <link rel="stylesheet" href="../static/css/jquery.mCustomScrollbar.min.css"/>
     <!--the css for this plugin-->
     <link rel="stylesheet" href="../static/css/jquery.emoji.css"/>
@@ -129,27 +128,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i data-feather="user-plus" class="mr-2"></i> Add Friends
+                    <i data-feather="user-plus" class="mr-2"></i> 添加好友
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ti-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="alert alert-info">Send invitations to friends.</div>
+                <div class="alert alert-info">发送邀请给朋友。</div>
                 <form>
                     <div class="form-group">
-                        <label for="emails" class="col-form-label">Email addresses</label>
+                        <label for="emails" class="col-form-label">邮箱地址</label>
                         <input type="text" class="form-control" id="emails">
                     </div>
                     <div class="form-group">
-                        <label for="message" class="col-form-label">Invitation message</label>
+                        <label for="message" class="col-form-label">邀请信息</label>
                         <textarea class="form-control" id="message"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary">提交</button>
             </div>
         </div>
     </div>
@@ -162,7 +161,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i data-feather="users" class="mr-2"></i> New Group
+                    <i data-feather="users" class="mr-2"></i> 创建群聊
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ti-close"></i>
@@ -171,7 +170,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="group_name" class="col-form-label">Group name</label>
+                        <label for="group_name" class="col-form-label">群名称</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="group_name">
                             <div class="input-group-append">
@@ -181,7 +180,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mb-2">The group members</p>
+                    <p class="mb-2">群成员</p>
                     <div class="form-group">
                         <div class="avatar-group">
                             <figure class="avatar" data-toggle="tooltip" title="Tobit Spraging">
@@ -209,13 +208,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description" class="col-form-label">Description</label>
+                        <label for="description" class="col-form-label">描述</label>
                         <textarea class="form-control" id="description"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Create Group</button>
+                <button type="button" class="btn btn-primary">创建群</button>
             </div>
         </div>
     </div>
@@ -535,13 +534,13 @@
                 <li class="logo">
                     <a href="#">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             x="0px" y="0px"
                              width="612px" height="612px" viewBox="0 0 612 612"
                              style="enable-background:new 0 0 612 612;" xml:space="preserve">
                             <g>
                                 <g id="_x32__26_">
                                     <g>
-                                    <path d="M401.625,325.125h-191.25c-10.557,0-19.125,8.568-19.125,19.125s8.568,19.125,19.125,19.125h191.25
+                                        <path d="M401.625,325.125h-191.25c-10.557,0-19.125,8.568-19.125,19.125s8.568,19.125,19.125,19.125h191.25
                                     c10.557,0,19.125-8.568,19.125-19.125S412.182,325.125,401.625,325.125z M439.875,210.375h-267.75
                                     c-10.557,0-19.125,8.568-19.125,19.125s8.568,19.125,19.125,19.125h267.75c10.557,0,19.125-8.568,19.125-19.125
                                     S450.432,210.375,439.875,210.375z M306,0C137.012,0,0,119.875,0,267.75c0,84.514,44.848,159.751,114.75,208.826V612
@@ -570,7 +569,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="active" data-navigation-target="chats" href="#" data-toggle="tooltip" title="Chats"
+                    <a class="active" data-navigation-target="chats" href="#" data-toggle="tooltip" title="消息"
                        data-placement="right">
                         <span class="badge badge-warning"></span>
                         <i data-feather="message-circle"></i>
@@ -578,42 +577,41 @@
                 </li>
                 <li>
                     <a data-navigation-target="friends" href="#" data-toggle="tooltip"
-                       title="Friends" data-placement="right">
+                       title="好友" data-placement="right">
                         <span class="badge badge-danger"></span>
                         <i data-feather="user"></i>
                     </a>
                 </li>
                 <li>
-                    <a data-navigation-target="favorites" data-toggle="tooltip" title="Favorites" data-placement="right"
+                    <a data-navigation-target="favorites" data-toggle="tooltip" title="关注" data-placement="right"
                        href="#">
                         <i data-feather="star"></i>
                     </a>
                 </li>
                 <li class="brackets">
                     <a data-navigation-target="archived" href="#" data-toggle="tooltip"
-                       title="Archived" data-placement="right">
-                        <i data-feather="archive"></i>
+                       title="群聊" data-placement="right">
+                        <i data-feather="users"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="dark-light-switcher" data-toggle="tooltip" title="Dark mode"
+                    <a href="#" class="dark-light-switcher" data-toggle="tooltip" title="夜间模式"
                        data-placement="right">
                         <i data-feather="moon"></i>
                     </a>
                 </li>
-                <li data-toggle="tooltip" title="User menu" data-placement="right">
+                <li data-toggle="tooltip" title="用户菜单" data-placement="right">
                     <a href="logout" data-toggle="dropdown">
                         <figure class="avatar">
                             <img src="../static/media/img/women_avatar5.jpg" class="rounded-circle" alt="image">
                         </figure>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editProfileModal">Edit
-                            profile</a>
-                        <a href="#" class="dropdown-item" data-navigation-target="contact-information">Profile</a>
-                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#settingModal">Settings</a>
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editProfileModal">编辑简介</a>
+                        <a href="#" class="dropdown-item" data-navigation-target="contact-information">简介</a>
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#settingModal">设置</a>
                         <div class="dropdown-divider"></div>
-                        <a href="logout" class="dropdown-item text-danger">Logout</a>
+                        <a href="logout" class="dropdown-item text-danger">退出</a>
                     </div>
                 </li>
             </ul>
@@ -630,15 +628,15 @@
             <!-- Chats sidebar -->
             <div id="chats" class="sidebar active">
                 <header>
-                    <span>Chats</span>
+                    <span>消息</span>
                     <ul class="list-inline">
-                        <li class="list-inline-item" data-toggle="tooltip" title="New group">
+                        <li class="list-inline-item" data-toggle="tooltip" title="创建群聊">
                             <a class="btn btn-outline-light" href="#" data-toggle="modal" data-target="#newGroup">
                                 <i data-feather="users"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-outline-light" data-toggle="tooltip" title="New chat" href="#"
+                            <a class="btn btn-outline-light" data-toggle="tooltip" title="添加好友" href="#"
                                data-navigation-target="friends">
                                 <i data-feather="plus-circle"></i>
                             </a>
@@ -651,7 +649,7 @@
                     </ul>
                 </header>
                 <form>
-                    <input type="text" class="form-control" placeholder="Search chats">
+                    <input type="text" class="form-control" placeholder="搜索">
                 </form>
                 <div class="sidebar-body">
                     <ul class="list-group list-group-flush">
@@ -706,12 +704,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -737,12 +734,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -768,12 +764,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -802,12 +797,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -833,12 +827,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -864,12 +857,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -895,12 +887,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -926,12 +917,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -957,12 +947,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -988,12 +977,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1008,9 +996,9 @@
             <!-- Friends sidebar -->
             <div id="friends" class="sidebar">
                 <header>
-                    <span>Friends</span>
+                    <span>好友</span>
                     <ul class="list-inline">
-                        <li class="list-inline-item" data-toggle="tooltip" title="Add friends">
+                        <li class="list-inline-item" data-toggle="tooltip" title="添加好友">
                             <a class="btn btn-outline-light" href="#" data-toggle="modal" data-target="#addFriends">
                                 <i data-feather="user-plus"></i>
                             </a>
@@ -1023,7 +1011,7 @@
                     </ul>
                 </header>
                 <form>
-                    <input type="text" class="form-control" placeholder="Search friends">
+                    <input type="text" class="form-control" placeholder="搜索">
                 </form>
                 <div class="sidebar-body">
                     <ul class="list-group list-group-flush">
@@ -1045,11 +1033,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1074,11 +1062,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1103,11 +1091,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1132,11 +1120,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1161,11 +1149,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1190,11 +1178,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1219,11 +1207,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1248,11 +1236,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1277,11 +1265,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1306,11 +1294,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">New chat</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1325,7 +1313,7 @@
             <!-- Favorites sidebar -->
             <div id="favorites" class="sidebar">
                 <header>
-                    <span>Favorites</span>
+                    <span>关注</span>
                     <ul class="list-inline">
                         <li class="list-inline-item d-xl-none d-inline">
                             <a href="#" class="btn btn-outline-light text-danger sidebar-close">
@@ -1335,15 +1323,20 @@
                     </ul>
                 </header>
                 <form>
-                    <input type="text" class="form-control" placeholder="Search favorites">
+                    <input type="text" class="form-control" placeholder="搜索">
                 </form>
                 <div class="sidebar-body">
-                    <ul class="list-group list-group-flush users-list">
-                        <li class="list-group-item">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" data-navigation-target="chats">
+                            <div>
+                                <figure class="avatar">
+                                    <img src="../static/media/img/women_avatar5.jpg" class="rounded-circle" alt="image">
+                                </figure>
+                            </div>
                             <div class="users-list-body">
                                 <div>
-                                    <h5>Jennica Kindred</h5>
-                                    <p>I know how important this file is to you. You can trust me ;)</p>
+                                    <h5>Harrietta Souten</h5>
+                                    <p>Dental Hygienist</p>
                                 </div>
                                 <div class="users-list-action">
                                     <div class="action-toggle">
@@ -1352,40 +1345,27 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" class="dropdown-item">Remove favorites</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
+                                                <a href="#" data-navigation-target="contact-information"
+                                                   class="dropdown-item">简介</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <div class="users-list-body">
-                                <div>
-                                    <h5>Marvin Rohan</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                </div>
-                                <div class="users-list-action">
-                                    <div class="action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i data-feather="more-horizontal"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" class="dropdown-item">Remove favorites</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <li class="list-group-item" data-navigation-target="chats">
+                            <div>
+                                <figure class="avatar avatar-state-warning">
+                                    <span class="avatar-title bg-success rounded-circle">A</span>
+                                </figure>
                             </div>
-                        </li>
-                        <li class="list-group-item">
                             <div class="users-list-body">
                                 <div>
-                                    <h5>Frans Hanscombe</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                                    <h5>Aline McShee</h5>
+                                    <p>Marketing Assistant</p>
                                 </div>
                                 <div class="users-list-action">
                                     <div class="action-toggle">
@@ -1394,29 +1374,11 @@
                                                 <i data-feather="more-horizontal"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" class="dropdown-item">Remove favorites</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="users-list-body">
-                                <div>
-                                    <h5>Karl Hubane</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                </div>
-                                <div class="users-list-action">
-                                    <div class="action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i data-feather="more-horizontal"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" class="dropdown-item">Remove favorites</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
+                                                <a href="#" data-navigation-target="contact-information"
+                                                   class="dropdown-item">简介</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1431,7 +1393,7 @@
             <!-- Archived sidebar -->
             <div id="archived" class="sidebar">
                 <header>
-                    <span>Archived</span>
+                    <span>群聊</span>
                     <ul class="list-inline">
                         <li class="list-inline-item d-xl-none d-inline">
                             <a href="#" class="btn btn-outline-light text-danger sidebar-close">
@@ -1441,56 +1403,40 @@
                     </ul>
                 </header>
                 <form>
-                    <input type="text" class="form-control" placeholder="Search archived">
+                    <input type="text" class="form-control" placeholder="搜索">
                 </form>
                 <div class="sidebar-body">
-                    <ul class="list-group list-group-flush users-list">
-                        <li class="list-group-item">
-                            <figure class="avatar">
-                                <span class="avatar-title bg-danger rounded-circle">M</span>
-                            </figure>
-                            <div class="users-list-body">
-                                <div>
-                                    <h5>Mercedes Pllu</h5>
-                                    <p>I know how important this file is to you. You can trust me ;)</p>
-                                </div>
-                                <div class="users-list-action">
-                                    <div class="action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i data-feather="more-horizontal"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" class="dropdown-item">Restore</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" data-navigation-target="chats">
+                            <div>
+                                <figure class="avatar">
+                                    <img src="../static/media/img/women_avatar5.jpg" class="rounded-circle" alt="image">
+                                </figure>
                             </div>
-                        </li>
-                        <li class="list-group-item">
-                            <figure class="avatar">
-                                <span class="avatar-title bg-secondary rounded-circle">R</span>
-                            </figure>
                             <div class="users-list-body">
                                 <div>
-                                    <h5>Rochelle Golley</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                                    <h5>大学班级群</h5>
+                                    <p>Dental Hygienist</p>
                                 </div>
                                 <div class="users-list-action">
                                     <div class="action-toggle">
                                         <div class="dropdown">
                                             <a data-toggle="dropdown" href="#">
-                                                <i data-feather="more-horizontal"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-more-horizontal">
+                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                    <circle cx="19" cy="12" r="1"></circle>
+                                                    <circle cx="5" cy="12" r="1"></circle>
+                                                </svg>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" class="dropdown-item">Restore</a>
+                                                <a href="#" class="dropdown-item">新对话</a>
+                                                <a href="#" data-navigation-target="contact-information"
+                                                   class="dropdown-item">简介</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                <a href="#" class="dropdown-item text-danger">返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1526,13 +1472,13 @@
                                 <i data-feather="menu"></i>
                             </a>
                         </li>
-                        <li class="list-inline-item" data-toggle="tooltip" title="Voice call">
+                        <li class="list-inline-item" data-toggle="tooltip" title="发起语音通话">
                             <a href="#" class="btn btn-outline-light text-success" data-toggle="modal"
                                data-target="#call">
                                 <i data-feather="phone"></i>
                             </a>
                         </li>
-                        <li class="list-inline-item" data-toggle="tooltip" title="Video call">
+                        <li class="list-inline-item" data-toggle="tooltip" title="发起视频通话">
                             <a href="#" class="btn btn-outline-light text-warning" data-toggle="modal"
                                data-target="#videoCall">
                                 <i data-feather="video"></i>
@@ -1544,11 +1490,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="#" data-navigation-target="contact-information"
-                                   class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Add to archive</a>
-                                <a href="#" class="dropdown-item">Delete</a>
+                                   class="dropdown-item">简介</a>
+                                <a href="#" class="dropdown-item">添加到档案</a>
+                                <a href="#" class="dropdown-item">删除</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item text-danger">Block</a>
+                                <a href="#" class="dropdown-item text-danger">返回</a>
                             </div>
                         </li>
                     </ul>
@@ -1659,7 +1605,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="message-item messages-divider sticky-top" data-label="Today"></div>
+                    <div class="message-item messages-divider sticky-top" data-label="今天"></div>
                     <div class="message-item">
                         <div class="message-avatar">
                             <figure class="avatar">
@@ -1745,7 +1691,7 @@
                             You are good ❤❤
                         </div>
                     </div>
-                    <div class="message-item messages-divider" data-label="1 message unread"></div>
+                    <div class="message-item messages-divider" data-label="1条未读消息"></div>
                     <div class="message-item">
                         <div class="message-avatar">
                             <figure class="avatar">
@@ -1769,7 +1715,8 @@
                             <i data-feather="smile"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" id="editor" contenteditable="true" placeholder="Write a message.">
+                    <input type="text" class="form-control" id="editor" contenteditable="true"
+                           placeholder="请输入消息">
                     <div class="form-buttons">
                         <button class="btn btn-light" data-toggle="tooltip" title="Add files" type="button">
                             <i data-feather="paperclip"></i>

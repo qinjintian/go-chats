@@ -1,63 +1,45 @@
 package controller
 
 import (
-	"crypto/md5"
 	"fmt"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/locales/zh"
-	ut "github.com/go-playground/universal-translator"
-	"github.com/go-playground/validator/v10"
-	zhTranslations "github.com/go-playground/validator/v10/translations/zh"
+	consulapi "github.com/hashicorp/consul/api"
+	"github.com/astaxie/beego/validation"
 	"go-chats/app/global/variable"
 	"go-chats/app/model"
 	"go-chats/app/utils/helper"
 	"gorm.io/gorm"
+	"log"
 	"net/http"
-	"reflect"
+	"os"
 	"time"
 )
 
 type PublicController struct{}
 
 func (p *PublicController) Login(c *gin.Context) {
+
 	if c.Request.Method == "POST" {
-		type Params struct {
-			Username string `form:"username" json:"username" validate:"required" label:"用户名"`
-			Password string `form:"password" json:"password" validate:"required,min=6,max=20" label:"密码"`
-		}
+		// 接收参数
+		username := c.DefaultPostForm("username", "")
+		password := c.DefaultPostForm("password", "")
 
-		params := &Params{
-			Username: c.PostForm("username"),
-			Password: c.PostForm("password"),
-		}
-
-		validate := validator.New()
-
-		// 注册一个函数，获取struct tag里自定义的label作为字段名
-		validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
-			label := fld.Tag.Get("label")
-			return label
-		})
-
-		trans, _ := ut.New(zh.New()).GetTranslator("zh")
-
-		// 注册翻译器
-		if err := zhTranslations.RegisterDefaultTranslations(validate, trans); err != nil {
-			c.JSON(http.StatusOK, gin.H{"code": 0, "message": err.Error()})
-			return
-		}
-
-		if errs := validate.Struct(params); errs != nil {
-			for _, err := range errs.(validator.ValidationErrors) {
-				c.JSON(http.StatusOK, gin.H{"code": 0, "message": err.Translate(trans)})
+		// 校验参数
+		validate := validation.Validation{}
+		validate.Required(username, "username").Message("用户名不能为空，请检查")
+		validate.Required(password, "password").Message("密码不能为空，请检查")
+		validate.MinSize(password, 6, "password").Message("密码不能少于6位数，请检查")
+		if validate.HasErrors() {
+			for _, err := range validate.Errors {
+				c.JSON(http.StatusOK, gin.H{"code": 0, "message": err.Error()})
 				return
 			}
 		}
 
-		// 查询数据库验证账号密码
+		// 数据查询
 		user := model.User{}
-		if err := model.DB.Where("`username` = ?", params.Username).First(&user).Error; err != nil {
+		if err := model.DB.Where("`username` = ?", username).First(&user).Error; err != nil {
 			if err == gorm.ErrRecordNotFound {
 				c.JSON(http.StatusOK, gin.H{"code": 0, "message": "该用户不存在，请检查。"})
 				return
@@ -71,7 +53,7 @@ func (p *PublicController) Login(c *gin.Context) {
 			return
 		}
 
-		if user.Password != helper.Md5(params.Password) {
+		if user.Password != helper.Md5(password) {
 			c.JSON(http.StatusOK, gin.H{"code": 0, "message": "密码不正确，请检查。"})
 			return
 		}
@@ -81,7 +63,7 @@ func (p *PublicController) Login(c *gin.Context) {
 		data["username"] = user.Username
 		data["nickname"] = user.Nickname
 		data["email"] = user.Email
-		data["jump"] = fmt.Sprintf("index?rand=%d", time.Now().UnixNano())
+		data["jump"] = fmt.Sprintf("index?t=%d", time.Now().UnixNano())
 
 		session := sessions.Default(c)
 		session.Set("user", variable.UserSessionData{Id: user.Id, Username: user.Username, Nickname: user.Nickname, Email: user.Email})
@@ -102,63 +84,38 @@ func (p *PublicController) Login(c *gin.Context) {
 
 func (p *PublicController) Logout(c *gin.Context) {
 	sessions.Default(c).Clear()
-	c.Redirect(http.StatusMovedPermanently, fmt.Sprintf("login?rand=%d", time.Now().UnixNano()))
+	c.Redirect(http.StatusMovedPermanently, fmt.Sprintf("login?t=%d", time.Now().UnixNano()))
 }
 
 func (p *PublicController) Register(c *gin.Context) {
 	if c.Request.Method == "POST" {
-		type Params struct {
-			Username  string `form:"username" json:"username" validate:"required" label:"用户名"`
-			Password  string `form:"password" json:"password" validate:"required,min=6,max=20" label:"密码"`
-			Nickname  string `form:"nickname" json:"nickname" validate:"required,max=15" label:"昵称"`
-			Email     string `form:"email" json:"email" validate:"required,email" label:"邮箱地址"`
-			Activate  uint8
-			CreatedAt time.Time `json:"created_at"`
-			UpdatedAt time.Time `json:"updated_at"`
+		// 接收参数
+		username := c.DefaultPostForm("username", "")
+		password := c.DefaultPostForm("password", "")
+		nickname := c.DefaultPostForm("nickname", "")
+		email := c.DefaultPostForm("email", "")
+
+		// 校验参数
+		validate := validation.Validation{}
+		validate.Required(username, "username").Message("请输出用户名")
+		validate.Required(password, "password").Message("请输入密码")
+		validate.Required(nickname, "nickname").Message("请输入昵称")
+		validate.Email(email, "email").Message("邮箱地址不正确")
+		if validate.HasErrors() {
+			for _, err := range validate.Errors {
+				c.JSON(http.StatusOK, gin.H{"code": 0, "message": err.Error()})
+				return
+			}
 		}
 
-		password := c.PostForm("password")
 		confirmPassword := c.DefaultPostForm("confirm_password", "")
 		if password != confirmPassword {
 			c.JSON(http.StatusOK, gin.H{"code": 0, "message": "两次密码输入不一致"})
 			return
 		}
 
-		params := &Params{
-			Username:  c.PostForm("username"),
-			Password:  password,
-			Nickname:  c.PostForm("nickname"),
-			Email:     c.PostForm("email"),
-			Activate:  1,
-			CreatedAt: time.Now(),
-			UpdatedAt: time.Now(),
-		}
-
-		validate := validator.New()
-
-		// 注册一个函数，获取struct tag里自定义的label作为字段名
-		validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
-			label := fld.Tag.Get("label")
-			return label
-		})
-
-		trans, _ := ut.New(zh.New()).GetTranslator("zh")
-
-		// 注册翻译器
-		if err := zhTranslations.RegisterDefaultTranslations(validate, trans); err != nil {
-			c.JSON(http.StatusOK, gin.H{"code": 0, "message": err.Error()})
-			return
-		}
-
-		if errs := validate.Struct(params); errs != nil {
-			for _, err := range errs.(validator.ValidationErrors) {
-				c.JSON(http.StatusOK, gin.H{"code": 0, "message": err.Translate(trans)})
-				return
-			}
-		}
-
 		var userCount int64 = 0
-		if err := model.DB.Table((&model.User{}).TableName()).Where("`username` = ?", params.Username).Count(&userCount).Error; err != nil {
+		if err := model.DB.Table((&model.User{}).TableName()).Where("`username` = ?", username).Count(&userCount).Error; err != nil {
 			c.JSON(http.StatusOK, gin.H{"code": 0, "message": "查询用户失败"})
 			return
 		}
@@ -168,8 +125,17 @@ func (p *PublicController) Register(c *gin.Context) {
 			return
 		}
 
-		params.Password = helper.Md5(params.Password)
-		if err := model.DB.Table((&model.User{}).TableName()).Create(params).Error; err != nil {
+		user := model.User{
+			Username: username,
+			Password: helper.Md5(password),
+			Nickname: nickname,
+			Email: email,
+			Activate: 1,
+			CreatedAt: time.Now(),
+			UpdatedAt: time.Now(),
+		}
+
+		if err := model.DB.Table((&model.User{}).TableName()).Create(&user).Error; err != nil {
 			c.JSON(http.StatusOK, gin.H{"code": 0, "message": "注册失败，请稍后再试"})
 			return
 		}
@@ -177,7 +143,7 @@ func (p *PublicController) Register(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    1,
 			"message": "注册成功",
-			"data":    map[string]string{"jump": fmt.Sprintf("login?rand=%d", time.Now().UnixNano())},
+			"data":    map[string]string{"jump": fmt.Sprintf("login?t=%d", time.Now().UnixNano())},
 		})
 	} else {
 		c.HTML(http.StatusOK, "register.html", gin.H{
@@ -193,7 +159,141 @@ func (p *PublicController) ResetPassword(c *gin.Context) {
 }
 
 func (p *PublicController) Test(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"data": string(fmt.Sprintf("%x", md5.Sum([]byte("hello")))),
-	})
+	ConsulRegister() // 注册服务到consul
+	// ConsulDeRegister() // 取消consul注册的服务
+	// ConsulFindServer() // 从consul中发现服务
+	// ConsulKVTest() // KV测试
+}
+
+func failOnError(err error, msg string) {
+	if err != nil {
+		fmt.Printf("%s: %s\n", msg, err)
+		os.Exit(1)
+	}
+}
+
+// 注册服务到consul
+func ConsulRegister() {
+	// 创建连接consul服务配置
+	config := consulapi.DefaultConfig()
+	config.Address = "127.0.0.1:8500"
+	client, err := consulapi.NewClient(config)
+	if err != nil {
+		log.Fatal("consul client error : ", err)
+	}
+
+	// 创建注册到consul的服务到
+	registration := new(consulapi.AgentServiceRegistration)
+	registration.ID = "grpc"
+	registration.Name = "go-consul-test"
+	registration.Tags = []string{"go-consul-test"}
+	registration.Port = 10086
+	registration.Address = "172.18.0.16"
+
+	// 增加consul健康检查回调函数
+	check := new(consulapi.AgentServiceCheck)
+	check.Timeout = "5s"
+	check.Interval = "5s"
+	check.GRPC = fmt.Sprintf("%v:%v/%v", registration.Address, registration.Port, "aaaa")
+	check.DeregisterCriticalServiceAfter = "30s" // 故障检查失败30s后 consul自动将注册服务删除
+	registration.Check = check
+
+	// 注册服务到consul
+	if err := client.Agent().ServiceRegister(registration); err != nil {
+		log.Fatal("注册服务到consul失败: ", err)
+	}
+
+	fmt.Printf("注册服务到consul成功，服务ID：%s，服务名：%s", registration.ID, registration.Name)
+}
+
+// 取消consul注册的服务
+func ConsulDeRegister() {
+	// 创建连接consul服务配置
+	config := consulapi.DefaultConfig()
+	config.Address = "127.0.0.1:8500"
+	client, err := consulapi.NewClient(config)
+	if err != nil {
+		log.Fatal("consul client error : ", err)
+	}
+
+	serverID := "grpc"
+	_ = client.Agent().ServiceDeregister(serverID)
+
+	fmt.Printf("取消consul某个注册的服务成功，服务ID：%s", serverID)
+}
+
+// 从consul中发现服务
+func ConsulFindServer() {
+	// 创建连接consul服务配置
+	config := consulapi.DefaultConfig()
+	config.Address = "127.0.0.1:8500"
+	client, err := consulapi.NewClient(config)
+	if err != nil {
+		log.Fatal("consul client error : ", err)
+	}
+
+	fmt.Println("================ 获取所有service =================")
+
+	// 获取所有service
+	services, _ := client.Agent().Services()
+	for _, value := range services {
+		fmt.Println("服务 ID：", value.ID)
+		fmt.Println("服务名称：", value.Service)
+		fmt.Println("服务地址：", value.Address)
+		fmt.Println("服务端口：", value.Port)
+		fmt.Println()
+	}
+
+	fmt.Println("================ 获取指定service =================")
+
+	// 获取指定service
+	service, _, err := client.Agent().Service("CalculatorService-0", nil)
+	if err == nil {
+		fmt.Println("服务地址：", service.Address)
+		fmt.Println("服务端口：", service.Port)
+	}
+}
+
+func ConsulCheckHeath() {
+	// 创建连接consul服务配置
+	config := consulapi.DefaultConfig()
+	config.Address = "127.0.0.1:8500"
+	client, err := consulapi.NewClient(config)
+	if err != nil {
+		log.Fatal("consul client error : ", err)
+	}
+
+	// 健康检查
+	a, b, _ := client.Agent().AgentHealthServiceByID("CalculatorService-0")
+	fmt.Println(a)
+	fmt.Println(b.Service)
+	fmt.Println(b.AggregatedStatus)
+	fmt.Println(b.Checks)
+}
+
+func ConsulKVTest() {
+	// 创建连接consul服务配置
+	config := consulapi.DefaultConfig()
+	config.Address = "127.0.0.1:8500"
+	client, err := consulapi.NewClient(config)
+	if err != nil {
+		log.Fatal("consul client error : ", err)
+	}
+
+	// KV, put值
+	values := "grpc"
+	key := "grpc/172.18.0.16:8100"
+	_, _ = client.KV().Put(&consulapi.KVPair{Key: key, Flags: 0, Value: []byte(values)}, nil)
+
+	// KV get值
+	data, _, _ := client.KV().Get(key, nil)
+	fmt.Println(string(data.Value))
+
+	// KV list
+	datas, _, _ := client.KV().List("g", nil)
+	for _, value := range datas {
+		fmt.Println(value)
+	}
+	keys, _, _ := client.KV().Keys("go", "", nil)
+	fmt.Println(keys)
 }

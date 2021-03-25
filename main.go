@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	// 加载配置文件
 	cfg, err := ini.Load("config/app.ini")
 	if err != nil {
